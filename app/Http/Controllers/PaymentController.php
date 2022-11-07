@@ -24,12 +24,19 @@ class PaymentController extends Controller
 
     public function storetrans(Request $request): Object
     {
+        $defaultpmethod = $this->PaymentGateways->getdefaultpayment();
+         $defname = $defaultpmethod[0]->pname;
+        $pcharges = $defaultpmethod[0]->pcharges;
+
+
         $Details = $request->only([
             'transname',
             'amount'])
          + [
                 'user_id' =>   Auth::id(),
-                'transid' =>   rand(0000,8999)
+                'transid' =>   rand(0000,8999),
+                'paymentmth' =>   $defname ,
+                'totalamt' =>    ($request->amount + ($request->amount*$pcharges)),
             ];
 
         if ($this->PaymentGateways->storetransactions($Details)) {
