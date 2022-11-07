@@ -14,7 +14,9 @@ class Transactions extends Migration
             $table->string('transid');
             $table->string('transname');
             $table->float('amount');
+            $table->float('totalamt');
             $table->dateTime('transdate')->useCurrent();
+            $table->string('paymentmth');
             $table->string('status')->default('Pending');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
