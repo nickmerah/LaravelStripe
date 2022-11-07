@@ -47,6 +47,7 @@
                                         <td width="5%"><span class="fieldarea"><strong>TransID</strong></span></td>
                                         <td width="15%"><span class="fieldarea"><strong>Description</strong></span></td>
                                         <td width="5%"><span class="fieldarea"><strong>Amount</strong></span></td>
+                                        <td width="5%"><span class="fieldarea"><strong>TotalAmt</strong></span></td>
                                         <td width="5%"><span class="fieldarea"><strong>Status</strong></span> </td>
                                         <td width="5%"><span class="fieldarea"><strong>Action</strong></span> </td>
 
@@ -59,6 +60,7 @@
                                             <td> {{ $alltransaction->transid  }} </td>
                                             <td>  {{ $alltransaction->transname  }} </td>
                                             <td> {{ $alltransaction->amount  }} </td>
+                                            <td> {{ $alltransaction->totalamt  }} </td>
                                             <td>  {{ $alltransaction->status  }} </td>
                                             <td>
                                                 @php if ( $alltransaction->status != 'Paid') { @endphp
