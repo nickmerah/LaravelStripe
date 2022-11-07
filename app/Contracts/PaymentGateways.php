@@ -3,6 +3,7 @@
 namespace App\Contracts;
 
 use App\Interfaces\PaymentEngine;
+use App\Models\PaymentMethod;
 use App\Models\Transactions;
 
 class PaymentGateways implements  PaymentEngine
@@ -17,12 +18,16 @@ class PaymentGateways implements  PaymentEngine
         return Transactions::create($transDetails);
     }
 
+    public function getdefaultpayment() {
+        return PaymentMethod::where('setdefault', 1)->get();
+    }
+
     public function stripepg(array $Details)
 {
       $id = $Details['transid'];
       $pd = Transactions::find($id );
        $name  =    $pd->transname ;
-        $unit_amount   =  $pd->amount ;
+        $unit_amount   =  $pd->totalamt*100 ;
         $successurl = url("/successredirect");
          $failurl = url("/failedredirect");
      require_once '../vendor/autoload.php';
